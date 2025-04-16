@@ -12,7 +12,7 @@ FROM node:22.14.0-alpine3.21 AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.next ./.next

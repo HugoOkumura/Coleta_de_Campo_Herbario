@@ -12,14 +12,14 @@ FROM node:22.14.0-alpine3.21 AS runner
 
 WORKDIR /app
 
-# ENV NODE_ENV=production
+ENV NODE_ENV=production `
+    PORT=3000 `
+    NEXT_TELEMERY_DISABLE=1
 
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/package.json ./
-COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
 
-
-RUN npm install
 EXPOSE 3000
 CMD ["npm","start"]

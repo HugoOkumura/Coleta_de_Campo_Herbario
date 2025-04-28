@@ -11,7 +11,7 @@ FROM node:22.14.0-alpine3.21 AS runner
 WORKDIR /app
 
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/src/app.js ./
+COPY --from=builder /app/src/* ./
 COPY --from=builder /app/package.json ./
 
 RUN chown -R node:node /app

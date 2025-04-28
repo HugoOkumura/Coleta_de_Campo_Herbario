@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Instruções para Contribuir para o projeto.
 
-## Getting Started
+<ol>
+<li> Clone o repositório: <br>
+>   git clone https://github.com/HugoOkumura/Coleta_de_Campo_Herbario.git 
 
-First, run the development server:
+<li> Puxe todas as branches do projeto:
+    exemplo de como fazer: <a href="https://phoenixnap.com/kb/git-pull-all-branches">phoenixNAP</a>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<li> vá para a branch develop: <br>
+>   git checkout develop
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<li> cria uma branch a partir dela: <br>
+>   git checkout -b nome_da_branch
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+<li> Toda issue deve ser feita uma branch a partir da branch develop e os pull requests devem ser feitas também para a develop
+</ol>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+# Instruções para testar o projeto
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<ol>
+<li> Abra um terminal no diretório raiz do projeto e execute o comando: <br>
+>   docker compose up -d <br>
+Este comando irá montar o projeto completo (back e front) no docker
+<li> Se quiser abrir apenas um dos dois basta adicionar no comando os argumentos "frontend" ou "backend":
+>   docker compose up frontend -d
+>   docker compose up backend -d
+<li> Se quiser finalizar os processo execute o comando:
+>   docker compose down
+</ol>

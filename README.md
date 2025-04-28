@@ -23,9 +23,9 @@
 <li> Abra um terminal no diretório raiz do projeto e execute o comando: <br>
 >   docker compose up -d <br>
 Este comando irá montar o projeto completo (back e front) no docker
-<li> Se quiser abrir apenas um dos dois basta adicionar no comando os argumentos "frontend" ou "backend":
->   docker compose up frontend -d
->   docker compose up backend -d
-<li> Se quiser finalizar os processo execute o comando:
+<li> Se quiser abrir apenas um dos dois basta adicionar no comando os argumentos "frontend" ou "backend": <br>
+>   docker compose up frontend -d <br>
+>   docker compose up backend -d    <br>
+<li> Se quiser finalizar os processo execute o comando: <br>
 >   docker compose down
 </ol>

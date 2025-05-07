@@ -117,3 +117,102 @@ CREATE TABLE amostra_midia (
 );
 
 
+-- INSERTS
+
+INSERT INTO estado (id_estado, nm_estado) VALUES
+('AC', 'Acre'),
+('AL', 'Alagoas'),
+('AP', 'Amapá'),
+('AM', 'Amazonas'),
+('BA', 'Bahia'),
+('CE', 'Ceará'),
+('DF', 'Distrito Federal'),
+('ES', 'Espírito Santo'),
+('GO', 'Goiás'),
+('MA', 'Maranhão'),
+('MT', 'Mato Grosso'),
+('MS', 'Mato Grosso do Sul'),
+('MG', 'Minas Gerais'),
+('PA', 'Pará'),
+('PB', 'Paraíba'),
+('PR', 'Paraná'),
+('PE', 'Pernambuco'),
+('PI', 'Piauí'),
+('RJ', 'Rio de Janeiro'),
+('RN', 'Rio Grande do Norte'),
+('RS', 'Rio Grande do Sul'),
+('RO', 'Rondônia'),
+('RR', 'Roraima'),
+('SC', 'Santa Catarina'),
+('SP', 'São Paulo'),
+('SE', 'Sergipe'),
+('TO', 'Tocantins');
+
+INSERT INTO dado_ecologico (id_dadoeco, ds_dadoeco) VALUES
+(1, 'Luminosidade'),
+(2, 'Substrato'),
+(3, 'Associações'),
+(4, 'Hábito'),
+(5, 'Tronco'),
+(6, 'Folhas'),
+(7, 'Frutos'),
+(8, 'Flores');
+--Luminosidade
+INSERT INTO item_dado (id_dadoeco, id_itemdado, ds_itemdado) VALUES
+(1, 1, 'Heliófita'),
+(1, 2, 'Semi-ciófila'),
+(1, 3, 'Ciófila');
+--Substrato
+(2, 1, 'Rupícola'),
+(2, 2, 'Ripária'),
+(2, 3, 'Palustre'),
+(2, 4, 'Hidrófila'),
+(2, 5, 'Psamófila'),
+(2, 6, 'Reófila'),
+(2, 7, 'Terrícola'),
+--Associacoes
+(3, 1, 'Epífita'),
+(3, 2, 'Parasita'),
+(3, 3, 'Hemi-parasita'),
+(3, 4, 'Saprófita'),
+--Hábito
+(4, 1, 'Árvore'),
+(4, 2, 'Arvoretas'),
+(4, 3, 'Arbusto'),
+(4, 4, 'Subarbusto'),
+(4, 5, 'Erva'),
+(4, 6, 'Ereta'),
+(4, 7, 'Decumbente'),
+(4, 8, 'Escandente'),
+(4, 9, 'Cespitosa'),
+(4, 10, 'Liana'),
+(4, 11, 'Prostrada'),
+(4, 12, 'Repitante'),
+(4, 13, 'Trepadeira com gavinhas'),
+(4, 14, 'Trepadeira volúvel'),
+--Tronco
+(5, 1, 'Árvores'),
+(5, 2, 'Arvoretas'),
+(5, 3, 'Arbustos'),
+(5, 4, 'Casca'),
+(5, 5, 'Lisa'),
+(5, 6, 'Escamosa'),
+(5, 7, 'Esfoliante'),
+(5, 8, 'Estriada'),
+(5, 9, 'Fissurada'),
+(5, 10, 'Gretada'),
+(5, 11, 'Suberosa'),
+(5, 12, 'Verrucosa'),
+--Folhas
+(6, 1, 'Membranáceas'),
+(6, 2, 'Cartáceas'),
+(6, 3, 'Coriáceas'),
+(6, 4, 'Crassas'),
+--Frutos
+(7, 1, 'Carnoso'),
+(7, 2, 'Seco'),
+(7, 3, 'Deiscentes'),
+(7, 4, 'Indeiscentes'),
+--Flores
+(8, 1, 'Cor Cálice'),
+(8, 2, 'Cor Corola');

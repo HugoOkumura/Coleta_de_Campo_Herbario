@@ -29,3 +29,13 @@ Este comando irá montar o projeto completo (back e front) no docker
 <li> Se quiser finalizar os processo execute o comando: <br>
 >   docker compose down
 </ol>
+
+# Instruções para acessar o Banco pelo Docker 
+
+<ol>
+<li> Abra um terminal com o do ligado na sua branch do projeto e execute o comando: <br>
+>   docker run -it --rm postgres psql -h host.docker.internal -p 5433 -U postgres -d herbario
+ <br>
+Este comando irá abrir o terminal de sql do Postgres dentro do docker 
+A senha do banco é : postgres
+</ol>

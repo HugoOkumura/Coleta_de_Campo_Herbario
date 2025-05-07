@@ -1,0 +1,109 @@
+.exp-card {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 14px;
+  padding: 24px;
+  max-width: 640px;
+  margin: 28px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.exp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.exp-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.exp-header p {
+  margin: 6px 0 0;
+  color: #5f5f5f;
+  font-size: 15px;
+}
+
+.badge {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 1px #ccc;
+}
+
+.aberto {
+  background: #e0f7ec;
+  color: #219653;
+  border: 1px solid #bde5ce;
+}
+
+.fechado {
+  background: #f5f5f5;
+  color: #7b7b7b;
+  border: 1px solid #d4d4d4;
+}
+
+.exp-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.exp-info label {
+  font-size: 13px;
+  color: #777;
+  font-weight: 600;
+}
+
+.exp-info p {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: #2d2d2d;
+}
+
+.exp-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-detalhes {
+  background: #3079b4;
+  color: #ffffff;
+}
+
+.btn-detalhes:hover {
+  background: #265f9d;
+}
+
+.btn-verde {
+  background: #2e7d32;
+  color: white;
+}
+
+.btn-verde:hover {
+  background: #27662b;
+}

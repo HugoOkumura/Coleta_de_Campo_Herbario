@@ -1,0 +1,67 @@
+.form-expedicao {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 640px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-expedicao h2 {
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-expedicao label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.form-expedicao input,
+.form-expedicao textarea {
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+  background-color: #fafafa;
+}
+
+.form-expedicao input:focus,
+.form-expedicao textarea:focus {
+  border-color: #2e7d32;
+  outline: none;
+  background-color: #fff;
+}
+
+.form-expedicao textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-expedicao button {
+  background-color: #2e7d32;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s ease;
+}
+
+.form-expedicao button:hover {
+  background-color: #27662b;
+}

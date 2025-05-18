@@ -52,6 +52,6 @@ Página que mostra as tabelas.
 <li> Abra um terminal com o docker ligado na sua branch do projeto e execute o comando: <br>
      >   docker run -it --rm postgres psql -h host.docker.internal -p 5433 -U postgres -d herbario
 <br>
-A senha do banco é : postgres
+A senha do banco é : postgres.<br>
 Este comando irá abrir o terminal de sql do Postgres dentro do docker 
 </ol>

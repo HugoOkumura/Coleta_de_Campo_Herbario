@@ -161,7 +161,7 @@ INSERT INTO dado_ecologico (id_dadoeco, ds_dadoeco) VALUES
 INSERT INTO item_dado (id_dadoeco, id_itemdado, ds_itemdado) VALUES
 (1, 1, 'Heliófita'),
 (1, 2, 'Semi-ciófila'),
-(1, 3, 'Ciófila');
+(1, 3, 'Ciófila'),
 --Substrato
 (2, 1, 'Rupícola'),
 (2, 2, 'Ripária'),

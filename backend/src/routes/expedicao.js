@@ -34,8 +34,17 @@ router.get('/', async (req, res) => {
 // Obter uma expedição por ID
 router.get('/:id', async (req, res) => {
   try {
+    const id = parseInt(req.params.id)
+    if (isNaN(id)) {
+      return res.status(400).json({ erro: 'ID inválido' })
+    }
 
-    const expedicao = await obterExpedicao(req.params.id)
+    const expedicao = await obterExpedicao(id)
+
+    if (!expedicao) {
+      return res.status(404).json({ erro: 'Expedição não encontrada' })
+    }
+
     res.status(200).json(expedicao)
   } catch (err) {
     console.error(err)
@@ -46,7 +55,12 @@ router.get('/:id', async (req, res) => {
 // Atualizar uma expedição
 router.put('/:id', async (req, res) => {
   try {
-    await atualizarExpedicao(req.params.id, req.body)
+    const id = parseInt(req.params.id)
+    if (isNaN(id)) {
+      return res.status(400).json({ erro: 'ID inválido' })
+    }
+
+    await atualizarExpedicao(id, req.body)
     res.status(200).json({ mensagem: 'Expedição atualizada com sucesso!' })
   } catch (err) {
     console.error(err)
@@ -57,12 +71,18 @@ router.put('/:id', async (req, res) => {
 // Excluir uma expedição
 router.delete('/:id', async (req, res) => {
   try {
-    await excluirExpedicao(req.params.id)
+    const id = parseInt(req.params.id)
+    if (isNaN(id)) {
+      return res.status(400).json({ erro: 'ID inválido' })
+    }
+
+    await excluirExpedicao(id)
     res.status(200).json({ mensagem: 'Expedição excluída com sucesso!' })
   } catch (err) {
     console.error(err)
     return res.status(500).json({ erro: 'Erro ao excluir expedição' })
   }
 })
+
 
 export default router

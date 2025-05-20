@@ -12,10 +12,10 @@ RUN npx prisma generate
 # Etapa final
 FROM node:22.14.0-alpine3.21 AS runner
 WORKDIR /app
-ENV NODE_ENV production
+# ENV NODE_ENV production
 
 COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/.env ./
+# COPY --from=builder /app/.env ./
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/node_modules ./node_modules

@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
     res.status(200).json(expedicoes)
   } catch (err) {
     console.error(err)
-    return res.status(500).json({ erro: 'Erro ao listar expedições' })
+    return res.status(500).json({ erro: `Erro ao listar expedições ${err}` })
   }
 })
 

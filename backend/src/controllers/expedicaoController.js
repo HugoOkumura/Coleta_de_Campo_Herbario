@@ -16,7 +16,7 @@ export const criarExpedicao = async (dados) => {
 
 // Listar todas as expedições
 export const listarExpedicoes = async () => {
-  return await prisma.expedicao.findMany()
+  return await prisma.expedicao.findMany({where:{id_expedicao: {not: undefined}}})
 }
 
 // Obter uma expedição por ID

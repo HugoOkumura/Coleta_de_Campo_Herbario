@@ -29,3 +29,29 @@ Este comando irá montar o projeto completo (back e front) no docker
 <li> Se quiser finalizar os processo execute o comando: <br>
 >   docker compose down
 </ol>
+
+# Instruções para acessar o Banco pelo Docker 
+
+<ol>
+<li> Abra um terminal com o docker ligado na sua branch do projeto e execute o comando: <br>
+    >   docker exec -it coleta_de_campo_herbario-backend-1 npx prisma migrate deploy
+<br>
+Este comando irá rodar as migrations.
+<li> Após isso execute este comando: <br>
+    > docker exec -it coleta_de_campo_herbario-backend-1 sh
+<br>
+Este comando entra no container do backend.
+<li> Dentro do container execute: <br>
+    > node prisma/seed.js
+<br>
+Este comando rodará a seed de todos os inserts iniciais (dados alterados somente pelos Dev's). Após isso, é só usar as urls do prisma para puxar dados do banco.
+<li> Caso queira ver se as tabelas estão no banco: <br>
+    > http://localhost:5000/tabelas
+<br>
+Página que mostra as tabelas.
+<li> Abra um terminal com o docker ligado na sua branch do projeto e execute o comando: <br>
+     >   docker run -it --rm postgres psql -h host.docker.internal -p 5433 -U postgres -d herbario
+<br>
+A senha do banco é : postgres.<br>
+Este comando irá abrir o terminal de sql do Postgres dentro do docker 
+</ol>

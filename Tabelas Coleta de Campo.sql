@@ -157,8 +157,9 @@ INSERT INTO dado_ecologico (id_dadoeco, ds_dadoeco) VALUES
 (6, 'Folhas'),
 (7, 'Frutos'),
 (8, 'Flores');
---Luminosidade
+
 INSERT INTO item_dado (id_dadoeco, id_itemdado, ds_itemdado) VALUES
+--Luminosidade
 (1, 1, 'Heliófita'),
 (1, 2, 'Semi-ciófila'),
 (1, 3, 'Ciófila'),

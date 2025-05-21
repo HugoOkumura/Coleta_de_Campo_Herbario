@@ -12,11 +12,6 @@ const router = Router()
 // Criar uma expedição
 router.post('/', async (req, res) => {
   try {
-    const { dt_expedicao, id_municipio } = req.body
-
-    if (!dt_expedicao || !id_municipio) {
-      return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
-    }
     await criarExpedicao(req.body)
     res.status(201).json({ mensagem: 'Expedição criada com sucesso!' })
   } catch (err) {
@@ -32,7 +27,8 @@ router.get('/', async (req, res) => {
     res.status(200).json(expedicoes)
   } catch (err) {
     console.error(err)
-    return res.status(500).json({ erro: 'Erro ao listar expedições' })
+    return res.status(500).json({ erro: `Erro ao listar expedições ${err}` })
+  }
 })
 
 // Obter uma expedição por ID
@@ -64,17 +60,7 @@ router.put('/:id', async (req, res) => {
       return res.status(400).json({ erro: 'ID inválido' })
     }
 
-    const { dt_expedicao, id_municipio } = req.body
-    if (!dt_expedicao || !id_municipio) {
-      return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
-    }
-
-    const atualizada = await atualizarExpedicao(id, req.body)
-    if (!atualizada) {
-      return res.status(404).json({ erro: 'Expedição não encontrada' })
-    }
     await atualizarExpedicao(id, req.body)
-
     res.status(200).json({ mensagem: 'Expedição atualizada com sucesso!' })
   } catch (err) {
     console.error(err)
@@ -90,12 +76,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(400).json({ erro: 'ID inválido' })
     }
 
-    const excluida = await excluirExpedicao(id)
-    if (!excluida) {
-      return res.status(404).json({ erro: 'Expedição não encontrada' })
-    }
     await excluirExpedicao(id)
-
     res.status(200).json({ mensagem: 'Expedição excluída com sucesso!' })
   } catch (err) {
     console.error(err)
@@ -103,5 +84,5 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-export default router
 
+export default router

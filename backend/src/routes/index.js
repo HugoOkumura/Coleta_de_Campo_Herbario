@@ -5,9 +5,9 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Rota inicial só pra testar
-router.get('/', (req, res) => {
-  res.send('Hello World');
-});
+// router.get('/', (req, res) => {
+//   res.send('Hello World');
+// });
 
 // Rota para listar as tabelas do banco (nomes)
 router.get('/tabelas', async (req, res) => {

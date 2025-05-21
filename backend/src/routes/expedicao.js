@@ -17,7 +17,6 @@ router.post('/', async (req, res) => {
     if (!dt_expedicao || !id_municipio) {
       return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
     }
-
     await criarExpedicao(req.body)
     res.status(201).json({ mensagem: 'Expedição criada com sucesso!' })
   } catch (err) {
@@ -34,7 +33,6 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.error(err)
     return res.status(500).json({ erro: 'Erro ao listar expedições' })
-  }
 })
 
 // Obter uma expedição por ID
@@ -75,6 +73,7 @@ router.put('/:id', async (req, res) => {
     if (!atualizada) {
       return res.status(404).json({ erro: 'Expedição não encontrada' })
     }
+    await atualizarExpedicao(id, req.body)
 
     res.status(200).json({ mensagem: 'Expedição atualizada com sucesso!' })
   } catch (err) {
@@ -95,6 +94,7 @@ router.delete('/:id', async (req, res) => {
     if (!excluida) {
       return res.status(404).json({ erro: 'Expedição não encontrada' })
     }
+    await excluirExpedicao(id)
 
     res.status(200).json({ mensagem: 'Expedição excluída com sucesso!' })
   } catch (err) {
@@ -104,3 +104,4 @@ router.delete('/:id', async (req, res) => {
 })
 
 export default router
+

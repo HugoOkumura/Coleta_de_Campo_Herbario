@@ -21,8 +21,7 @@ export const criarExpedicao = async (dados) => {
           }
         : undefined,
     },
-  })
-}
+ 
 
 // Listar todas as expedições
 export const listarExpedicoes = async () => {
@@ -40,6 +39,7 @@ export const listarExpedicoes = async () => {
       },
     },
   })
+
 }
 
 // Obter uma expedição por ID
@@ -72,6 +72,13 @@ export const atualizarExpedicao = async (id, dados) => {
   if (!existe) throw new Error('Expedição não encontrada')
 
   return await prisma.expedicao.update({
+
+  // Verifica se existe
+  const existe = await prisma.expedicao.findUnique({ where: { id_expedicao: idNum } })
+  if (!existe) throw new Error('Expedição não encontrada')
+
+  const { dt_expedicao, id_municipio, id_vegetacao } = dados
+  await prisma.expedicao.update({
     where: { id_expedicao: idNum },
     data: {
       dt_expedicao: new Date(dt_expedicao),
@@ -84,7 +91,6 @@ export const atualizarExpedicao = async (id, dados) => {
 // Excluir uma expedição
 export const excluirExpedicao = async (id) => {
   const idNum = Number(id)
-
   const existe = await prisma.expedicao.findUnique({
     where: { id_expedicao: idNum },
   })
@@ -99,3 +105,4 @@ export const excluirExpedicao = async (id) => {
     where: { id_expedicao: idNum },
   })
 }
+

@@ -13,7 +13,7 @@ app.use(json())
 app.use(urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/', indexRouter)
+app.use('/', expedicaoRoutes)
 app.use('/users', usersRouter)
 
 app.use('/api/expedicoes', expedicaoRoutes)

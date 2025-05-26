@@ -6,22 +6,18 @@ const prisma = new PrismaClient()
 export const criarExpedicao = async (dados) => {
   const { dt_expedicao, id_municipio, id_vegetacao, midias } = dados
 
-  return await prisma.expedicao.create({
-    data: {
-      dt_expedicao: new Date(dt_expedicao),
-      id_municipio: Number(id_municipio),
-      id_vegetacao: id_vegetacao ? Number(id_vegetacao) : null,
-      expedicaoMidia: midias && Array.isArray(midias)
-        ? {
-            create: midias.map((m) => ({
-              tp_arquivo: m.tp_arquivo,
-              arquivo: Buffer.from(m.arquivo, 'base64'),
-              descricao: m.descricao || null,
-            })),
-          }
-        : undefined,
-    },
-  })
+      return await prisma.expedicao.create({
+      data: {
+        dt_expedicao: dt_expedicao ? new Date(dt_expedicao): new Date(),
+        id_municipio,
+        id_vegetacao,
+        in_abert: true,
+      },
+      include: {
+        municipio: true,
+        tipoVegetacao: true,
+      },
+    });
 }
 
 // Listar todas as expedições

@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import express from 'express'
 import {
   criarExpedicao,
   listarExpedicoes,
@@ -6,25 +6,27 @@ import {
   atualizarExpedicao,
   excluirExpedicao
 } from '../controllers/expedicaoController.js'
+import moment from 'moment'
 
-const router = Router()
+export const router = express.Router()
 
 // Criar uma expedição
 router.post('/', async (req, res) => {
   try {
-    const { dt_expedicao, id_municipio } = req.body
-
-    if (!dt_expedicao || !id_municipio) {
+    const {id_municipio } = req.body
+    if (!req.body.dt_expedicao || !id_municipio) {
       return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
     }
-
+    req.body.dt_expedicao = moment().toISOString()
+//
     await criarExpedicao(req.body)
     res.status(201).json({ mensagem: 'Expedição criada com sucesso!' })
   } catch (err) {
     console.error(err)
-    return res.status(500).json({ erro: 'Erro ao criar expedição' })
+    return res.status(500).json({ erro: `Erro ao criar expedição ${err}` })
   }
 })
+
 
 // Listar todas as expedições
 router.get('/', async (req, res) => {
@@ -102,3 +104,5 @@ router.delete('/:id', async (req, res) => {
     return res.status(500).json({ erro: 'Erro ao excluir expedição' })
   }
 })
+
+export const expedicaoRoutes = router

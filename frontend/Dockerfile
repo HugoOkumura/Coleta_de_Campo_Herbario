@@ -1,14 +1,15 @@
 # escape=`
 # Importa uma imagem oficial do Node.js 22.14.0 Alpine
-FROM node:22.14.0-alpine3.21 AS builder
+FROM node:22.14.0-bullseye AS builder
 
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
+RUN NODE_OPTIONS="--max-old-space-size=1024" npm run build
 RUN npm run build
 
-FROM node:22.14.0-alpine3.21 AS runner
+FROM node:22.14.0-bullseye AS runner
 
 WORKDIR /app
 

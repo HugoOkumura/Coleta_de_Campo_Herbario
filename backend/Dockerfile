@@ -23,4 +23,4 @@ COPY --from=builder /app/node_modules ./node_modules
 RUN chown -R node:node /app
 USER node
 
-CMD ["node", "src/bin/server.js"]
+CMD ["npm", "run", "dev"]

@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 // });
 
 // Rota para listar as tabelas do banco (nomes)
-router.get('/tabelas', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // Aqui listamos as tabelas do schema public no PostgreSQL
     const result = await prisma.$queryRaw`

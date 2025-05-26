@@ -2,10 +2,10 @@ import React from 'react';
 import './ExpedicaoCard.css';
 
 export default function ExpedicaoCard({
-  titulo,
-  descricao,
+  // titulo,
+  // descricao,
   data,
-  local,
+  municipio,
   status,
   onDetalhes,
   onRegistrar
@@ -16,8 +16,8 @@ export default function ExpedicaoCard({
     <div className="exp-card">
       <div className="exp-header">
         <div>
-          <h2>{titulo}</h2>
-          <p>{descricao}</p>
+          <h2>{municipio}</h2>
+          {/* <p>{descricao}</p> */}
         </div>
         <span className={`badge ${isAberto ? 'aberto' : 'fechado'}`}>{status}</span>
       </div>
@@ -27,10 +27,10 @@ export default function ExpedicaoCard({
           <label>Data</label>
           <p>{data}</p>
         </div>
-        <div>
+        {/* <div>
           <label>Local</label>
-          <p>{local}</p>
-        </div>
+          <p>{municipio}</p>
+        </div> */}
       </div>
 
       <div className="exp-actions">

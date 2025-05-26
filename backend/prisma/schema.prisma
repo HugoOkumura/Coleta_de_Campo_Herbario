@@ -41,10 +41,12 @@ model TipoSolo {
 }
 
 model Expedicao {
-  id_expedicao   Int              @id    // removido @db.Numeric(7)
+  id_expedicao   Int              @id    @default(autoincrement()) // removido @db.Numeric(7)
   dt_expedicao   DateTime         @db.Date
+  in_aberto      Boolean          @default(true)
   id_municipio   Int                        // removido @db.Numeric(7)
   id_vegetacao   Int?                       // removido @db.Numeric(5)
+
   municipio      Municipio        @relation(fields: [id_municipio], references: [id_municipio])
   tipoVegetacao  TipoVegetacao?   @relation(fields: [id_vegetacao], references: [id_vegetacao])
   expedicaoMidia ExpedicaoMidia[]

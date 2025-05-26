@@ -1,0 +1,111 @@
+.expedicao-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px auto;
+  width: 90%;
+  max-width: 640px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.expedicao-card:hover {
+  transform: translateY(-2px);
+}
+
+.expedicao-card.aberto {
+  border-left: 5px solid #1db954;
+}
+
+.expedicao-card.fechado {
+  border-left: 5px solid #888;
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.titulo h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #222;
+}
+
+.titulo p {
+  margin: 4px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.status {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.verde {
+  background: #e6fce9;
+  color: #1db954;
+}
+
+.cinza {
+  background: #f1f1f1;
+  color: #555;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.info label {
+  font-weight: bold;
+  font-size: 13px;
+  color: #444;
+}
+
+.info p {
+  margin: 2px 0 0;
+  color: #333;
+}
+
+.botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.detalhes {
+  background-color: #5b2eff;
+  color: white;
+}
+
+.detalhes:hover {
+  background-color: #4a24d3;
+}
+
+.registrar {
+  background-color: #1db954;
+  color: white;
+}
+
+.registrar:hover {
+  background-color: #169c47;
+}

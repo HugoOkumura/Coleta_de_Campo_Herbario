@@ -11,7 +11,7 @@ export const criarExpedicao = async (dados) => {
         dt_expedicao: dt_expedicao ? new Date(dt_expedicao): new Date(),
         id_municipio,
         id_vegetacao,
-        in_abert: true,
+        in_aberto: true,
       },
       include: {
         municipio: true,

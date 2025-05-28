@@ -21,8 +21,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// app.use('/', indexRouter)
-// app.use('/users', usersRouter)
 
 app.use('/api/expedicoes', expedicaoRoutes)
 

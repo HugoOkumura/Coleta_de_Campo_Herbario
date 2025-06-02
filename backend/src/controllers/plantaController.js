@@ -3,11 +3,10 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export const criarPlanta = async (dados) => {
-  const { id_planta, nm_vulgar, nm_cientifico, nm_familia } = dados
+  const { nm_vulgar, nm_cientifico, nm_familia } = dados
 
   return await prisma.planta.create({
     data: {
-      id_planta: Number(id_planta),
       nm_vulgar,
       nm_cientifico,
       nm_familia,

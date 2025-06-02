@@ -12,9 +12,9 @@ export const router = express.Router()
 // Create
 router.post('/', async (req, res) => {
   try {
-    const { id_planta, nm_vulgar, nm_cientifico, nm_familia } = req.body
+    const { nm_vulgar, nm_cientifico, nm_familia } = req.body
 
-    if (!id_planta || !nm_vulgar || !nm_cientifico || !nm_familia) {
+    if (!nm_vulgar || !nm_cientifico || !nm_familia) {
       return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
     }
 

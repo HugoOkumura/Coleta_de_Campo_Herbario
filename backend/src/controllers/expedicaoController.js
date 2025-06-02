@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 // Criar uma expedição
 export const criarExpedicao = async (dados) => {
-  const { dt_expedicao, id_municipio, id_vegetacao, midias } = dados
+  const { dt_expedicao, id_municipio, id_vegetacao, ds_titulo } = dados
 
       return await prisma.expedicao.create({
       data: {
@@ -12,6 +12,7 @@ export const criarExpedicao = async (dados) => {
         id_municipio,
         id_vegetacao,
         in_aberto: true,
+        ds_titulo: ds_titulo,
       },
       include: {
         municipio: true,

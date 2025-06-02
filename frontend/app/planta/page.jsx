@@ -1,5 +1,5 @@
 // /app/plantas/page.jsx
-import FormularioPlanta from '../componentes/FormularioPlanta';
+import FormularioPlanta from '../components/FormularioPlanta';
 
 export default function PlantaPage() {
   return (

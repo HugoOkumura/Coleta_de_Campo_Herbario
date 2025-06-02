@@ -1,5 +1,5 @@
 // /app/cadastro/page.jsx
-import FormularioExpedicao from '../componentes/FormularioExpedicao';
+import FormularioExpedicao from '../../components/FormularioExpedicao';
 
 export default function CadastroPage() {
   return (

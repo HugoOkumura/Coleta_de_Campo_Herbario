@@ -28,13 +28,11 @@ services:
     ports:
       - "5000:5000"
     environment:
-      # - NODE_ENV=development
       - DATABASE_URL=postgres://postgres:postgres@db:5432/herbario
       - PORT=5000
     volumes:
       - ./backend:/app
       - /app/node_modules
-    #   - postgres_data:/var/lib/postgresql/data
     depends_on:
       - db
     networks:

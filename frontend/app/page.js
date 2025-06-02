@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import Header from './components/header'
 
-import ExpedicoesPage from './expedicoes/page'
+import ExpedicoesPage from './expedicao/page.jsx'
 
 export default function Home() {
   return (

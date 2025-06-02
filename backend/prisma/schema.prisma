@@ -42,6 +42,7 @@ model TipoSolo {
 
 model Expedicao {
   id_expedicao   Int              @id    @default(autoincrement()) // removido @db.Numeric(7)
+  ds_titulo      String
   dt_expedicao   DateTime         @db.Date
   in_aberto      Boolean          @default(true)
   id_municipio   Int                        // removido @db.Numeric(7)

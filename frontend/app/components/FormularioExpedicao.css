@@ -1,3 +1,4 @@
+/* components/FormularioExpedicao.css */
 .form-expedicao {
   background: #ffffff;
   border: 1px solid #dedede;
@@ -20,33 +21,49 @@
   text-align: center;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .form-expedicao label {
   font-size: 14px;
   font-weight: 600;
   color: #444;
-  margin-bottom: 4px;
 }
 
 .form-expedicao input,
-.form-expedicao textarea {
+.form-expedicao select {
   padding: 12px;
   font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   transition: border-color 0.2s ease;
   background-color: #fafafa;
+  color: black
 }
 
 .form-expedicao input:focus,
-.form-expedicao textarea:focus {
+.form-expedicao select:focus {
   border-color: #2e7d32;
   outline: none;
   background-color: #fff;
+  color: black
 }
 
-.form-expedicao textarea {
-  resize: vertical;
-  min-height: 80px;
+.error-message {
+  padding: 12px;
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.loading-text {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
 }
 
 .form-expedicao button {
@@ -64,4 +81,9 @@
 
 .form-expedicao button:hover {
   background-color: #27662b;
+}
+
+.form-expedicao button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }

@@ -13,8 +13,8 @@ export const router = express.Router()
 // Criar uma expedição
 router.post('/', async (req, res) => {
   try {
-    const {id_municipio } = req.body
-    if (!req.body.dt_expedicao || !id_municipio) {
+    const {id_municipio, ds_titulo } = req.body
+    if (!req.body.dt_expedicao || !id_municipio || !ds_titulo) {
       return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
     }
     req.body.dt_expedicao = moment().toISOString()
@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const expedicoes = await listarExpedicoes()
+    console.log(expedicoes)
     res.status(200).json(expedicoes)
   } catch (err) {
     console.error(err)

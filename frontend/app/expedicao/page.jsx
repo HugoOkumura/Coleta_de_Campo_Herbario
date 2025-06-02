@@ -71,6 +71,7 @@ export default function ExpedicoesPage() {
           data={new Date(expedicao.dt_expedicao).toLocaleDateString('pt-BR')}
           municipio={municipio}
           status={expedicao.in_aberto === true ? 'Aberto' : 'Fechado'}
+          titulo={expedicao.ds_titulo}
 
           onDetalhes={() => router.push(`/expedicoes/${expedicao.id_expedicao}`)}
           onRegistrar={() => router.push(`/expedicoes/${expedicao.id_expedicao}/registrar`)}
@@ -90,7 +91,7 @@ export default function ExpedicoesPage() {
             cursor: 'pointer',
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
           }}
-          onClick={() => router.push('/expedicoes/nova')}
+          onClick={() => router.push('/expedicao/cadastro')}
         >
           + Criar Nova Expedição
         </button>

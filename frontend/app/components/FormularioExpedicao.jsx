@@ -1,12 +1,15 @@
 // components/FormularioExpedicao.jsx
 'use client'
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import './FormularioExpedicao.css';
 import { api } from '../lib/api';
 
+
 export default function ExpedicaoForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
-    titulo: '',
+    ds_titulo: '',
     id_municipio: '',
     id_vegetacao: ''
   });
@@ -41,7 +44,7 @@ export default function ExpedicaoForm() {
   useEffect(() => {
     const fetchVegetacoes = async () => {
       try {
-        const data = await api.get('/api/vegetacoes');
+        const data = await api.get('api/vegetacao');
         setVegetacoes(data);
         setLoading(prev => ({ ...prev, vegetacoes: false }));
       } catch (err) {
@@ -90,26 +93,24 @@ export default function ExpedicaoForm() {
     setError(null);
 
     try {
-      const response = await fetch('/api/expedicoes', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Falha ao cadastrar expedição');
+      const response = await api.post('api/expedicoes/create',formData)
+      console.log(response)
+      if (!response.success) {
+        throw new Error(`${response.mensage}`);
       }
 
       setFormData({
-        titulo: '',
-        id_municipio: '',
-        id_vegetacao: ''
+        ds_titulo: "",
+        id_municipio: "",
+        id_vegetacao: ""
       });
       setEstadoSelecionado('');
 
-      alert('Expedição cadastrada com sucesso!');
+      console.log(response.exp)
+
+      router.push(`/expedicao/${response.exp.id_expedicao}`)
+
+      alert(`${response.menssage}`);
     } catch (err) {
       setError(err.message);
     }
@@ -127,14 +128,14 @@ export default function ExpedicaoForm() {
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="titulo">
+          <label htmlFor="ds_titulo">
             Título da Expedição
           </label>
           <input
             type="text"
-            id="titulo"
-            name="titulo"
-            value={formData.titulo}
+            id="ds_titulo"
+            name="ds_titulo"
+            value={formData.ds_titulo}
             onChange={handleChange}
             required
           />

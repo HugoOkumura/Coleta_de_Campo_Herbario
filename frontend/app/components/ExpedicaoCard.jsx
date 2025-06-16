@@ -42,13 +42,3 @@ export default function ExpedicaoCard({
     </div>
   );
 }
-{/* <button 
-  className="btn btn-detalhes"
-  onClick={() => {
-    const expedicaoId = expedicao.id_expedicao; // Extrai o ID aqui
-    console.log("ID extraído:", expedicaoId); // Para debug
-    router.push(`/expedicao/${expedicaoId}`);
-  }}
->
-  Detalhes
-</button> */}

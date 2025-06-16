@@ -48,8 +48,8 @@ export default function ExpedicoesPage() {
       <Header title={"Expedições"}/>
 
       {expedicoes.map((expedicao) => {
-        const municipio = expedicao.municipio.nm_municipio
-        const vegetacao = expedicao.tipoVegetacao.nm_vegetacao
+        // const municipio = expedicao.municipio.nm_municipio
+        // const vegetacao = expedicao.tipoVegetacao.nm_vegetacao
         return (
         <ExpedicaoCard
           key={expedicao.id_expedicao}

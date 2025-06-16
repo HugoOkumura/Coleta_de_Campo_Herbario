@@ -1,53 +1,14 @@
 'use client';
 
-// import { useParams } from 'next/navigation';
-// import { useEffect, useState } from 'react';
-import {api} from '../../lib/api';
-// import Link from 'next/link';
-
-// import Header from '@/app/components/header';
-
-// export default function DetalhesExpedicao() {
-//   const { id_expedicao } = useParams();
-//   const [expedicao, setExpedicao] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//     useEffect(() => {
-//         const carregarExpedicao = async () => {
-//             try{
-//                 const data = await api.get(`api/expedicoes/${id_expedicao}`)
-//                 setExpedicao(data);
-//             } catch (err){
-//                 setError(err.message);
-//             } finally{
-//                 setLoading(false);
-//             }
-//         };
-
-//         carregarExpedicao();
-//     }, [id_expedicao])
-
-//   return (
-//     <div>
-//       <Header title={expedicao.ds_titulo}/>
-
-
-      
-//     </div>
-//   );
-
-// }
-
 // import AmostraLista from '@/components/AmostraLista';
 import Link from 'next/link';
 import './page.css';
 import { useRouter } from 'next/navigation';
+import {api} from '../../lib/api';
 import React, {useEffect, useState} from 'react';
 import Header from '@/app/components/header';
 
 export default function ExpedicaoDetalhes({params}) {
-  // const res = await fetch(`http://localhost:5000/api/expedicoes/${params.id}`);
   const router = useRouter();
   const [expedicao, setExpedicao] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -69,9 +30,8 @@ export default function ExpedicaoDetalhes({params}) {
     carregarExpedicao();
   }, []);  
   
-  // console.log(expedicao);
+  console.log(id_expedicao);
   return (
-      
       <div className="expedicao-container" style={{backgroundColor: 'f1f7f6', minHeight: '100vh'}}>
         <Header title={expedicao.ds_titulo}/>
 
@@ -88,7 +48,7 @@ export default function ExpedicaoDetalhes({params}) {
             </div>
             <div className="dados-item">
               <p>Status</p>
-              <p>{expedicao.in_aberto ? 'Fechado' : 'Aberto'}</p>
+              <p><span className={`badge ${expedicao.in_aberto ? 'aberto' : 'fechado'}`}>{expedicao.in_aberto ? 'Aberto' : 'Fechado'}</span></p>
             </div>
           </div>
 
@@ -98,12 +58,13 @@ export default function ExpedicaoDetalhes({params}) {
               <p>{expedicao.tipoVegetacao?.nm_vegetacao}</p>
             </div>
             <div className="botoes-acao">
-              <Link 
-                href={`/expedicao/${id_expedicao}/edicao`}
-                className="botao botao-editar"
-                >
+              <button
+                className='botao botao-editar'
+                onClick={(modoEdicao=true, expedicao) => router.push(`/expedicao/${id_expedicao}/edicao`)}
+              >
                 Editar
-              </Link>
+              </button>
+
               <button className="botao botao-deletar" onClick={ async (e) => {
                 e.preventDefault()
                 setError(null)
@@ -111,7 +72,7 @@ export default function ExpedicaoDetalhes({params}) {
                   console.log("deletando....")
                   const response = await api.delete(`api/expedicoes/${id_expedicao}`)
                   
-                  if(!response.success) {
+                  if(response.success) {
                     throw new Error(`${response.mensagem}`);
                   }
                   console.log(response)

@@ -1,0 +1,189 @@
+/* Estilos gerais da página */
+.expedicao-container {
+ background-color: white;
+}
+
+/* Cabeçalho */
+.expedicao-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #1a365d;
+}
+
+/* Seção de dados gerais */
+.dados-gerais {
+  background-color: white;
+  padding: 1.5rem;
+  /* border-radius: 0.5rem; */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.dados-gerais h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: black;
+}
+
+.dados-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dados-item p:first-child {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: #000000;
+}
+p{
+    color:black;
+}
+
+/* Controles de edição */
+.controles-vegetacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vegetacao-info p:first-child {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.botoes-acao {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.botao {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.botao-editar {
+  background-color: #4299e1;
+  color: white;
+}
+
+.botao-editar:hover {
+  background-color: #3182ce;
+}
+
+.botao-deletar {
+  background-color: #f56565;
+  color: white;
+}
+
+.botao-deletar:hover {
+  background-color: #e53e3e;
+}
+
+/* Lista de amostras */
+.lista-amostras-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.lista-amostras-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.botao-adicionar {
+  background-color: #48bb78;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.botao-adicionar:hover {
+  background-color: #38a169;
+}
+
+/* Cards de amostras */
+.amostra-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.amostra-card-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.amostra-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.amostra-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.amostra-nomes h3 {
+  font-weight: 500;
+  color: #4299e1;
+  cursor: pointer;
+}
+
+.amostra-nomes h3:hover {
+  text-decoration: underline;
+}
+
+.amostra-nomes p {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.amostra-detalhes {
+  text-align: right;
+}
+
+.amostra-detalhes p:first-child {
+  font-size: 0.875rem;
+}
+
+.amostra-detalhes p:last-child {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.badge{
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 1px #ccc;
+}
+
+.aberto {
+  background: #e0f7ec;
+  color: #219653;
+  border: 1px solid #bde5ce;
+}
+
+.fechado {
+  background: #f5f5f5;
+  color: #7b7b7b;
+  border: 1px solid #d4d4d4;
+}

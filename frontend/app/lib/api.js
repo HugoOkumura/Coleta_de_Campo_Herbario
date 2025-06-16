@@ -5,14 +5,13 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export const api = {
     async get(endpoint) {
-        console.log(API_URL)
         const response = await fetch(`http://localhost:5000/${endpoint}`);
-        console.log(response)
         return await response.json();
     }, // get
     
     async post(endpoint, data) {
-        const response = await fetch(`${API_URL}${endpoint}`, {
+        console.log(data)   
+        const response = await fetch(`http://localhost:5000/${endpoint}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,5 +21,26 @@ export const api = {
         return await response.json();
     }, // post
 
-    // outros métodos (put, delete) para fazer
+    async put(endpoint, data) {
+        const response = await fetch(`http://localhost:5000/${endpoint}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        return await response.json();
+       }, // put
+
+       async delete(endpoint) {
+           const config = {
+               method: 'DELETE',
+               headers: {
+                   'Content-Type': 'application/json',
+               },
+           };
+
+           const response = await fetch(`http://localhost:5000/${endpoint}`, config);
+           return await response.json();
+       }, // delete
 }; // api

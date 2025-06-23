@@ -3,6 +3,7 @@ import express from 'express'
 import {
     criarAmostra,
     listarAmostra,
+    obterAmostraExpedicao,
     obterAmostra,
     atualizarAmostra,
     excluirAmostra
@@ -60,6 +61,42 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Obter todas as amostras de uma expedição
+router.get('/:id', async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        // Validação do ID
+        if (isNaN(id)) {
+            return res.status(400).json({
+                status: 400,
+                message: 'ID inválido',
+            });
+        }
+        // Busca da amostra
+        const amostra = await obterAmostraExpedicao(id);
+        // Verificação se a amostra foi encontrada
+        if (!amostra) {
+            return res.status(404).json({
+                status: 404,
+                message: 'Amostra não encontrada',
+            });
+        }
+        // Resposta de sucesso
+        return res.status(200).json({
+            status: 200,
+            data: amostra,
+            message: 'Amostra obtida com sucesso'
+        });
+
+    } catch (error) {
+        console.error(error);
+        // Resposta em caso de erro interno
+        return res.status(500).json({
+            status: 500,
+            message: error.message || 'Erro ao obter amostra',
+        });
+    }
+});
 
 // Obter uma amostra por ID
 router.get('/:id', async (req, res) => {

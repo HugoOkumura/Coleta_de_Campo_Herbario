@@ -17,25 +17,23 @@ router.post('/', async (req, res) => {
         // Validação dos campos obrigatórios
         if (!id_planta || !id_expedicao || !nm_coletor) {
             return res.status(400).json({
-                success: false,
-                error: 'Campos obrigatórios ausentes.',
-                details: null
+                status: 500,
+                message: 'Campos obrigatórios ausentes.',
             });
         }
-        await criarAmostra(req.body);
+        const novaAmostra = await criarAmostra(req.body);
         // Resposta de sucesso
         return res.status(201).json({
-            success: true,
-            data: req.body,
+            status: 201,
+            novaAmostra: novaAmostra,
             message: 'Amostra criada com sucesso'
         });
     } catch (error) {
         console.error(error);
         // Resposta em caso de erro
         return res.status(500).json({
-            success: false,
-            error: error.message || 'Erro ao criar a amostra',
-            details: error.details || null
+            status: 500,
+            message: error.message || 'Erro ao criar a amostra',
         });
     }
 });
@@ -48,7 +46,7 @@ router.get('/', async (req, res) => {
         console.log(amostras);
         // Resposta de sucesso
         return res.status(200).json({
-            success: true,
+            status: 200,
             data: amostras,
             message: 'Amostras listadas com sucesso'
         });
@@ -56,9 +54,8 @@ router.get('/', async (req, res) => {
         console.error(error);
         // Resposta em caso de erro
         return res.status(500).json({
-            success: false,
-            error: error.message || 'Erro ao listar amostras',
-            details: error.details || null
+            status: 500,
+            message: error.message || 'Erro ao listar amostras',
         });
     }
 });
@@ -71,9 +68,8 @@ router.get('/:id', async (req, res) => {
         // Validação do ID
         if (isNaN(id)) {
             return res.status(400).json({
-                success: false,
-                error: 'ID inválido',
-                details: null
+                status: 400,
+                message: 'ID inválido',
             });
         }
         // Busca da amostra
@@ -81,14 +77,13 @@ router.get('/:id', async (req, res) => {
         // Verificação se a amostra foi encontrada
         if (!amostra) {
             return res.status(404).json({
-                success: false,
-                error: 'Amostra não encontrada',
-                details: null
+                status: 404,
+                message: 'Amostra não encontrada',
             });
         }
         // Resposta de sucesso
         return res.status(200).json({
-            success: true,
+            status: 200,
             data: amostra,
             message: 'Amostra obtida com sucesso'
         });
@@ -97,9 +92,8 @@ router.get('/:id', async (req, res) => {
         console.error(error);
         // Resposta em caso de erro interno
         return res.status(500).json({
-            success: false,
-            error: error.message || 'Erro ao obter amostra',
-            details: error.details || null
+            status: 500,
+            message: error.message || 'Erro ao obter amostra',
         });
     }
 });
@@ -112,18 +106,16 @@ router.put('/:id', async (req, res) => {
         // Validação do ID
         if (isNaN(id)) {
             return res.status(400).json({
-                success: false,
-                error: 'ID inválido',
-                details: null
+                status: 400,
+                message: 'ID inválido',              
             });
         }
         // Validação dos campos obrigatórios
         const { id_planta, id_expedicao, nm_coletor } = req.body;
         if (!id_planta || !id_expedicao || !nm_coletor) {
             return res.status(400).json({
-                success: false,
-                error: 'Campos obrigatórios ausentes.',
-                details: null
+                status: 400,
+                message: 'Campos obrigatórios ausentes.',
             });
         }
         // Atualização da amostra
@@ -131,14 +123,13 @@ router.put('/:id', async (req, res) => {
         // Verificação se a amostra foi encontrada
         if (!amostraAtualizada) {
             return res.status(404).json({
-                success: false,
-                error: 'Amostra não encontrada',
-                details: null
+                status: 404,
+                message: 'Amostra não encontrada',
             });
         }
         // Resposta de sucesso
         return res.status(200).json({
-            success: true,
+            status: 200,
             data: amostraAtualizada,
             message: 'Amostra atualizada com sucesso!'
         });
@@ -146,9 +137,8 @@ router.put('/:id', async (req, res) => {
         console.error(error);
         // Resposta em caso de erro interno
         return res.status(500).json({
-            success: false,
-            error: error.message || 'Erro ao atualizar amostra',
-            details: error.details || null
+            status: 500,
+            message: error.message || 'Erro ao atualizar amostra',
         });
     }
 });
@@ -161,9 +151,8 @@ router.delete('/:id', async (req, res) => {
     // Validação do ID
     if (isNaN(id)) {
       return res.status(400).json({
-        success: false,
-        error: 'ID inválido',
-        details: null
+        status: 500,
+        message: 'ID inválido',
       });
     }
     // Exclusão da amostra
@@ -171,14 +160,14 @@ router.delete('/:id', async (req, res) => {
     // Verificação se a amostra foi encontrada e excluída
     if (!excluida) {
       return res.status(404).json({
-        success: false,
-        error: 'Amostra não encontrada',
-        details: null
+        status: 500,
+        message: 'Amostra não encontrada',
+        
       });
     }
     // Resposta de sucesso
     return res.status(200).json({
-      success: true,
+      status: 200,
       message: 'Amostra excluída com sucesso!',
       data: { id }
     });
@@ -186,9 +175,8 @@ router.delete('/:id', async (req, res) => {
     console.error(error);
     // Resposta em caso de erro interno
     return res.status(500).json({
-      success: false,
-      error: error.message || 'Erro ao excluir amostra',
-      details: error.details || null
+      status: 500,
+      message: error.message || 'Erro ao excluir amostra',
     });
   }
 });

@@ -74,6 +74,44 @@ export const listarAmostra = async () => {
         },
     })
 }
+// Obter uma amostra por ID
+export const obterAmostraExpedicao = async (id) => {
+    return await prisma.amostra.findUnique({
+        where: { 
+            expedicao: {
+                select:{
+                    id_expedicao: parseInt(id),
+                } 
+            }
+        },
+        include: {
+            planta: {
+                select: {
+                    nm_vulgar: true,
+                    nm_cientifico: true,
+                    nm_familia: true,
+                },
+            },
+            expedicao: {
+                select: {
+                    ds_titulo: true,
+                    dt_expedicao: true,
+                },
+            },
+            tipoRelevo: true,
+            tipoSolo: true,
+            amostra_dados: true,
+            amostra_midias: {
+                select: {
+                    id_amostramidia: true,
+                    tp_arquivo: true,
+                    descricao: true,
+                    data_upload: true,
+                },
+            },
+        },
+    })
+}
 
 // Obter uma amostra por ID
 export const obterAmostra = async (id) => {

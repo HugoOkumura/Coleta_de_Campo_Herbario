@@ -93,7 +93,7 @@ export default function ExpedicaoForm({modoEdicao = false, expedicaoExistente = 
     const fetchVegetacoes = async () => {
       try {
         const data = await api.get('api/vegetacoes');
-        setVegetacoes(data.data);
+        setVegetacoes(data);
         setLoading(prev => ({ ...prev, vegetacoes: false }));
       } catch (err) {
         setError('Falha ao carregar tipos de vegetação');
@@ -161,17 +161,21 @@ const handleSubmit = async (e) => {
       );
     } else {
       // Na criação, remove a data (se estiver no formData)
-      const { dt_expedicao, ...dadosCriacao } = dadosParaEnviar;
-      response = await api.post('api/expedicoes/create', dadosCriacao);
+      const { dt_expedicao,id_estado, ...dadosCriacao } = dadosParaEnviar;
+      response = await api.post('api/expedicoes/', dadosCriacao);
     }
 
     if (response.status != 201) {
-      throw new Error(response.mensagem || (modoEdicao ? 'Falha ao atualizar' : 'Falha ao criar'));
+      throw new Error(response.message || (modoEdicao ? 'Falha ao atualizar' : 'Falha ao criar'));
     }
 
     // Redireciona para a página da expedição
     // router.push(`/expedicao/${modoEdicao ? expedicaoExistente.id_expedicao : response.exp.id_expedicao}`);
-    if(modoEdicao) router.push(`/expedicao/${expedicaoExistente.id_expedicao}`);
+    console.log("aigaiiduahgida");
+    if(modoEdicao) {
+      console.log("aigaiiduahgida");
+      router.push(`/expedicao/${expedicaoExistente.id_expedicao}`);
+    }
     else router.push(`/expedicao/${response.exp.id_expedicao}`);
     
   } catch (err) {

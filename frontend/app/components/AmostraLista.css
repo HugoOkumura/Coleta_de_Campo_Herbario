@@ -1,0 +1,35 @@
+/* Lista de amostras */
+.container-amostras {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;  /* Altura mínima */
+  height: 60vh;       /* Altura relativa à viewport */
+  max-height: 800px;  /* Altura máxima */
+  gap: clamp(1rem, 3vh, 3rem); /* Espaçamento responsivo */
+  color: black;
+}
+
+.container-amostras h2 {
+  /* font-size: 1.25rem; */
+  /* font-weight: 600; */
+  margin-top: 0;
+}
+
+.botao-adicionar {
+  background-color: #48bb78;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.botao-adicionar:hover {
+  background-color: #38a169;
+}
+
+/* 
+style={{ textAlign: 'center', marginTop: '20px' }}
+ */

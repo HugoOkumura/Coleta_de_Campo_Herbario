@@ -1,12 +1,11 @@
 'use client';
 
-// import AmostraLista from '@/components/AmostraLista';
-import Link from 'next/link';
 import './page.css';
 import { useRouter } from 'next/navigation';
 import { api } from '../../lib/api';
 import React, { useEffect, useState } from 'react';
 import Header from '@/app/components/header';
+import AmostraLista from '@/app/components/AmostraLista';
 
 export default function ExpedicaoDetalhes({ params }) {
   const router = useRouter();
@@ -131,8 +130,9 @@ export default function ExpedicaoDetalhes({ params }) {
           </div>
         </div>
       </div>
-
-      {/* <AmostraLista expedicaoId={params.id_expedicao} /> */}
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <AmostraLista expedicaoId={id_expedicao} />
+        </div>
     </div>
   );
 }

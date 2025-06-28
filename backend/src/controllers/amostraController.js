@@ -74,15 +74,11 @@ export const listarAmostra = async () => {
         },
     })
 }
-// Obter uma amostra por ID
+// Obter as amostras de uma expedicao por ID
 export const obterAmostraExpedicao = async (id) => {
-    return await prisma.amostra.findUnique({
-        where: { 
-            expedicao: {
-                select:{
-                    id_expedicao: parseInt(id),
-                } 
-            }
+    return await prisma.amostra.findMany({
+        where: {
+            id_expedicao: Number(id),
         },
         include: {
             planta: {
@@ -110,7 +106,7 @@ export const obterAmostraExpedicao = async (id) => {
                 },
             },
         },
-    })
+    });
 }
 
 // Obter uma amostra por ID

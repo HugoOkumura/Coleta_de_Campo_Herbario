@@ -62,7 +62,7 @@ router.get('/', async (req, res) => {
 });
 
 // Obter todas as amostras de uma expedição
-router.get('/:id', async (req, res) => {
+router.get('/expedicao/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         // Validação do ID

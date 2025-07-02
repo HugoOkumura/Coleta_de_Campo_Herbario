@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useState, useEffect } from 'react';
 import './FormularioExpedicao.css';
 import { api } from '../lib/api';
@@ -44,28 +44,11 @@ export default function AmostraForm() {
           api.get('/api/solos'),
         ]);
 
-        setExpedicoes(exp.data.map(e => ({
-          id: e.id_expedicao,
-          ds_titulo: e.ds_titulo
-        })));
-
-        setPlantas(plt.data.map(p => ({
-          id: p.id_planta,
-          nm_cientifico: p.nm_cientifico
-        })));
-
-        setRelevos(rel.data.map(r => ({
-          id: r.id_relevo,
-          nome: r.nome
-        })));
-
-        setSolos(sol.data.map(s => ({
-          id: s.id_solo,
-          nome: s.nome
-        })));
-
+        setExpedicoes(exp.data);
+        setPlantas(plt.data);
+        setRelevos(rel.data);
+        setSolos(sol.data);
       } catch (err) {
-        console.error('Erro ao carregar dados:', err);
         setError('Erro ao carregar dados do formulário');
       } finally {
         setLoading({
@@ -90,7 +73,14 @@ export default function AmostraForm() {
     setError(null);
 
     try {
-      const response = await api.post('/api/amostras', formData);
+      const response = await fetch('/api/amostras', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error('Erro ao cadastrar amostra');
+
       alert('Amostra cadastrada com sucesso!');
       setFormData({
         id_planta: '',
@@ -108,8 +98,7 @@ export default function AmostraForm() {
         ds_obscomplement: ''
       });
     } catch (err) {
-      console.error('Erro ao cadastrar amostra:', err);
-      setError(err.message || 'Erro ao cadastrar amostra');
+      setError(err.message);
     }
   };
 
@@ -161,7 +150,10 @@ export default function AmostraForm() {
             >
               <option value="">Selecione {label.toLowerCase()}</option>
               {options.map(item => (
-                <option key={item.id} value={item.id}>
+                <option
+                  key={item[`id_${name.split('_')[1]}`]}
+                  value={item[`id_${name.split('_')[1]}`]}
+                >
                   {item[labelField]}
                 </option>
               ))}

@@ -121,6 +121,18 @@ async function main() {
       ],
       skipDuplicates: true
     });
+
+    await prisma.tipoRelevo.createMany({
+      data: [
+        { nm_relevo: 'Planalto' },
+        { nm_relevo: 'Planice' },
+        { nm_relevo: 'Depressao' },
+        { nm_relevo: 'Montanha' }
+
+      ],
+      skipDuplicates: true
+  });
+
   
     console.log('Seed concluído!');
   }

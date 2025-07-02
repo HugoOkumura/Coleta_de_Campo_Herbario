@@ -8,7 +8,8 @@
 // } from '../controllers/tipoVegetacaoController.js';
 
 // export const router = express.Router();
-// const MAX_LENGTH_NM_VEGETACAO = 40;
+
+const MAX_LENGTH_NM_VEGETACAO = 40;
 
 // // Criar um tipo de vegetação
 // router.post('/', async (req, res) => {

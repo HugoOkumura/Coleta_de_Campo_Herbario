@@ -1,0 +1,53 @@
+/* Cards de amostras */
+.amostra-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.amostra-card-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.amostra-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.amostra-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.amostra-nomes h3 {
+  font-weight: 500;
+  color: #4299e1;
+  cursor: pointer;
+}
+
+.amostra-nomes h3:hover {
+  text-decoration: underline;
+}
+
+.amostra-nomes p {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.amostra-detalhes {
+  text-align: right;
+}
+
+.amostra-detalhes p:first-child {
+  font-size: 0.875rem;
+}
+
+.amostra-detalhes p:last-child {
+  font-size: 0.75rem;
+  color: #718096;
+}

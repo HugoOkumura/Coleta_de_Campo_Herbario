@@ -9,8 +9,8 @@ export const criarExpedicao = async (dados) => {
       return await prisma.expedicao.create({
       data: {
         dt_expedicao: dt_expedicao ? new Date(dt_expedicao): new Date(),
-        id_municipio,
-        id_vegetacao,
+        id_municipio: Number(id_municipio),
+        id_vegetacao: Number(id_vegetacao),
         in_aberto: true,
         ds_titulo: ds_titulo,
       },
@@ -32,7 +32,7 @@ export const listarExpedicoes = async () => {
           id_expedicaomidia: true,
           tp_arquivo: true,
           descricao: true,
-          data_upload: true,
+          data_upload: true
         },
       },
     },
@@ -75,6 +75,40 @@ export const atualizarExpedicao = async (id, dados) => {
       id_municipio: Number(id_municipio),
       id_vegetacao: id_vegetacao ? Number(id_vegetacao) : null,
     },
+  })
+}
+
+export const fecharExpedicao = async (id) => {
+  const idNum = Number(id)
+  const existe = await prisma.expedicao.findUnique({
+    where: {id_expedicao: idNum}
+  })
+  if (!existe) throw new Error('Expedição não encontrada')
+
+  return await prisma.expedicao.update({
+    where: {
+      id_expedicao: idNum,
+    },
+    data: {
+      in_aberto: false
+    }
+  })
+}
+
+export const reabrirExpedicao = async (id) => {
+  const idNum = Number(id)
+  const existe = await prisma.expedicao.findUnique({
+    where: {id_expedicao: idNum}
+  })
+  if (!existe) throw new Error('Expedição não encontrada')
+
+  return await prisma.expedicao.update({
+    where: {
+      id_expedicao: idNum,
+    },
+    data: {
+      in_aberto: true
+    }
   })
 }
 

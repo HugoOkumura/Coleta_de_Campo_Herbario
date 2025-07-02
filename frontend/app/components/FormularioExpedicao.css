@@ -87,3 +87,13 @@
   background-color: #cccccc;
   cursor: not-allowed;
 }
+
+.form-expedicao.edicao {
+  border-left: 4px solid #4CAF50;
+  padding-left: 1rem;
+}
+
+.form-expedicao.edicao h2::after {
+  content: " (Edição)";
+  color: #4CAF50;
+}

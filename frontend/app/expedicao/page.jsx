@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import ExpedicaoCard from '../components/ExpedicaoCard';
 import { api } from '../lib/api';
+import Header from '../components/header';
 
 export default function ExpedicoesPage() {
   const router = useRouter();
@@ -44,37 +45,17 @@ export default function ExpedicoesPage() {
   }
   return (
     <div style={{ backgroundColor: '#f1f7f6', minHeight: '100vh'}}>
-      <header style={{
-        backgroundColor: '#007e33',
-        padding: '20px 0',
-        boxShadow: '0 2px 6px rgba(143, 45, 45, 0.1)',
-        marginBottom: '30px'
-      }}>
-        <h1 style={{
-          margin: 0,
-          textAlign: 'center',
-          color: 'white',
-          fontSize: '32px',
-          fontWeight: 'bold',
-          fontFamily: 'Arial, sans-serif'
-        }}>
-          Coleta de Campo
-        </h1>
-      </header>
+      <Header title={"Expedições"}/>
 
       {expedicoes.map((expedicao) => {
-        const municipio = expedicao.municipio.nm_municipio
-        console.log(expedicao)
+        // const municipio = expedicao.municipio.nm_municipio
+        // const vegetacao = expedicao.tipoVegetacao.nm_vegetacao
         return (
         <ExpedicaoCard
           key={expedicao.id_expedicao}
-          data={new Date(expedicao.dt_expedicao).toLocaleDateString('pt-BR')}
-          municipio={municipio}
-          status={expedicao.in_aberto === true ? 'Aberto' : 'Fechado'}
-          titulo={expedicao.ds_titulo}
-
-          onDetalhes={() => router.push(`/expedicoes/${expedicao.id_expedicao}`)}
-          onRegistrar={() => router.push(`/expedicoes/${expedicao.id_expedicao}/registrar`)}
+          expedicao={expedicao}
+          onDetalhes={(id) => router.push(`/expedicao/${id}`)}
+          onRegistrar={(id) => router.push(`/expedicao/${id}/registrar`)}
         />
       )}
       )}

@@ -3,7 +3,6 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
 import indexRouter from './routes/index.js'
-// import usersRouter from './routes/users.js'
 import {expedicaoRoutes} from './routes/expedicao.js'
 import { plantaRoutes } from './routes/planta.js'
 import { amostraRoutes } from './routes/amostra.js'
@@ -11,6 +10,9 @@ import { estadosRoutes } from './routes/estado.js'
 import {municipiosRoutes} from './routes/municipio.js'
 import {vegetacaoRoutes} from './routes/vegetacao.js';
 import {tipoSoloRoutes} from './routes/solo.js'
+import {tipoRelevoRoutes} from './routes/tiporelevo.js'
+
+
 
 const app = express()
 
@@ -32,6 +34,7 @@ app.use('/api/plantas', plantaRoutes)
 app.use('/api/amostras', amostraRoutes)
 app.use('/api/estados', estadosRoutes)
 app.use('/api/municipios', municipiosRoutes)
+app.use('/api/relevos', tipoRelevoRoutes)
 app.use('/api/vegetacoes', vegetacaoRoutes);
 app.use('/api/solos', tipoSoloRoutes)
 

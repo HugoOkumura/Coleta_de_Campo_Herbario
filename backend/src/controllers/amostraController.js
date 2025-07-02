@@ -47,30 +47,12 @@ export const criarAmostra = async (dados) => {
 export const listarAmostra = async () => {
     return await prisma.amostra.findMany({
         include: {
-            planta: {
-                select: {
-                    nm_vulgar: true,
-                    nm_cientifico: true,
-                    nm_familia: true,
-                },
-            },
-            expedicao: {
-                select: {
-                    ds_titulo: true,
-                    dt_expedicao: true,
-                },
-            },
+            planta: true,
+            expedicao: true,
             tipoRelevo: true,
             tipoSolo: true,
             amostra_dados: true,
-            amostra_midias: {
-                select: {
-                    id_amostramidia: true,
-                    tp_arquivo: true,
-                    descricao: true,
-                    data_upload: true,
-                },
-            },
+            amostra_midias: true,
         },
     })
 }
@@ -81,30 +63,12 @@ export const obterAmostraExpedicao = async (id) => {
             id_expedicao: Number(id),
         },
         include: {
-            planta: {
-                select: {
-                    nm_vulgar: true,
-                    nm_cientifico: true,
-                    nm_familia: true,
-                },
-            },
-            expedicao: {
-                select: {
-                    ds_titulo: true,
-                    dt_expedicao: true,
-                },
-            },
+            planta: true,
+            expedicao: true,
             tipoRelevo: true,
             tipoSolo: true,
             amostra_dados: true,
-            amostra_midias: {
-                select: {
-                    id_amostramidia: true,
-                    tp_arquivo: true,
-                    descricao: true,
-                    data_upload: true,
-                },
-            },
+            amostra_midias: true,
         },
     });
 }
@@ -114,30 +78,12 @@ export const obterAmostra = async (id) => {
     return await prisma.amostra.findUnique({
         where: { id_amostra: Number(id) },
         include: {
-            planta: {
-                select: {
-                    nm_vulgar: true,
-                    nm_cientifico: true,
-                    nm_familia: true,
-                },
-            },
-            expedicao: {
-                select: {
-                    ds_titulo: true,
-                    dt_expedicao: true,
-                },
-            },
+            planta: true,
+            expedicao: true,
             tipoRelevo: true,
             tipoSolo: true,
             amostra_dados: true,
-            amostra_midias: {
-                select: {
-                    id_amostramidia: true,
-                    tp_arquivo: true,
-                    descricao: true,
-                    data_upload: true,
-                },
-            },
+            amostra_midias: true,
         },
     })
 }

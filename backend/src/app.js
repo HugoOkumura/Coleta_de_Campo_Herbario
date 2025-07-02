@@ -10,7 +10,7 @@ import { amostraRoutes } from './routes/amostra.js'
 import { estadosRoutes } from './routes/estado.js'
 import {municipiosRoutes} from './routes/municipio.js'
 import {vegetacaoRoutes} from './routes/vegetacao.js';
-
+import {tipoSoloRoutes} from './routes/solo.js'
 
 const app = express()
 
@@ -33,7 +33,7 @@ app.use('/api/amostras', amostraRoutes)
 app.use('/api/estados', estadosRoutes)
 app.use('/api/municipios', municipiosRoutes)
 app.use('/api/vegetacoes', vegetacaoRoutes);
-
+app.use('/api/solos', tipoSoloRoutes)
 
 
 export default app

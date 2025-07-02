@@ -31,7 +31,7 @@ export const listarTiposSolo = async () => {
 };
 
 // Obter um tipo de solo por ID
-export const obterTiposolo = async (id) => {
+export const obterTipoSolo = async (id) => {
   const idNum = Number(id);
   if (isNaN(idNum)) {
     throw new Error('ID inválido fornecido.');

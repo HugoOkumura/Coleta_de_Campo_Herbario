@@ -38,10 +38,10 @@ export default function AmostraForm() {
     const fetchAll = async () => {
       try {
         const [exp, plt, rel, sol] = await Promise.all([
-          api.get('/api/expedicoes'),
-          api.get('/api/plantas'),
-          api.get('/api/relevos'),
-          api.get('/api/solos'),
+          api.get('api/expedicoes'),
+          api.get('api/plantas'),
+          api.get('api/relevos'),
+          api.get('api/solos'),
         ]);
 
         setExpedicoes(exp.data);

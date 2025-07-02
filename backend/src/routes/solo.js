@@ -5,7 +5,7 @@ import {
   obterTipoSolo,
   atualizarTipoSolo,
   excluirTipoSolo,
-} from '../controllers/tipoSoloController.js';
+} from '../controllers/soloController.js';
 
 export const router = express.Router();
 const MAX_LENGTH_NM_SOLO = 40;

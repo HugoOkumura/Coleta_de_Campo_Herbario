@@ -73,7 +73,7 @@ export default function AmostraForm() {
     setError(null);
 
     try {
-      const response = await fetch('/api/amostras', {
+      const response = await fetch('localhost:5000/api/amostras', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

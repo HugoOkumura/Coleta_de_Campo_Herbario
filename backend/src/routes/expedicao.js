@@ -4,7 +4,9 @@ import {
   listarExpedicoes,
   obterExpedicao,
   atualizarExpedicao,
-  excluirExpedicao
+  excluirExpedicao,
+  fecharExpedicao,
+  reabrirExpedicao
 } from '../controllers/expedicaoController.js'
 import moment from 'moment'
 
@@ -13,17 +15,16 @@ export const router = express.Router()
 // Criar uma expedição
 router.post('/', async (req, res) => {
   try {
-    const {id_municipio, ds_titulo } = req.body
-    if (!req.body.dt_expedicao || !id_municipio || !ds_titulo) {
-      return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
+    const {id_municipio, ds_titulo,id_vegetacao } = req.body
+    if (!id_vegetacao || !id_municipio || !ds_titulo) {
+      return res.status(400).json({ mensagem: 'Campos obrigatórios ausentes.' })
     }
-    req.body.dt_expedicao = moment().toISOString()
-//
-    await criarExpedicao(req.body)
-    res.status(201).json({ mensagem: 'Expedição criada com sucesso!' })
+
+    const exp = await criarExpedicao(req.body)
+    res.status(201).json({ mensagem: 'Expedição criada com sucesso!', status:201, exp:exp })
   } catch (err) {
     console.error(err)
-    return res.status(500).json({ erro: `Erro ao criar expedição ${err}` })
+    return res.status(500).json({ mensagem: `Erro ao criar expedição ${err}` })
   }
 })
 
@@ -61,30 +62,56 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// Atualizar uma expedição
 router.put('/:id', async (req, res) => {
   try {
-    const id = parseInt(req.params.id)
+    const id = parseInt(req.params.id);
     if (isNaN(id)) {
-      return res.status(400).json({ erro: 'ID inválido' })
+      return res.status(400).json({ erro: 'ID inválido' });
     }
 
-    const { dt_expedicao, id_municipio } = req.body
+    // Verifica se é uma requisição para fechar
+    if (req.query.action === 'fechar') {
+      const fechada = await fecharExpedicao(id);
+      if (!fechada) {
+        return res.status(404).json({message:'Expedição não encontrada', status:404});
+      }
+      return res.status(201).json({
+        message:'Expedição fechada com sucesso',
+        data: fechada,
+        status: 201
+      });
+    }
+
+    // Verifica se é uma requisição para reabrir
+    if (req.query.action === 'reabrir') {
+      const aberta = await reabrirExpedicao(id);
+      if (!aberta) {
+        return res.status(404).json({message:'Expedição não encontrada', status:404});
+      }
+      return res.status(201).json({
+        message:'Expedição reaberta com sucesso',
+        data: aberta,
+        status: 201
+      });
+    }
+    
+    // Caso contrário, atualização normal
+    const { dt_expedicao, id_municipio } = req.body;
     if (!dt_expedicao || !id_municipio) {
-      return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
+      return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' });
     }
 
-    const atualizada = await atualizarExpedicao(id, req.body)
+    const atualizada = await atualizarExpedicao(id, req.body);
     if (!atualizada) {
-      return res.status(404).json({ erro: 'Expedição não encontrada' })
+      return res.status(404).json({ erro: 'Expedição não encontrada' });
     }
 
-    res.status(200).json({ mensagem: 'Expedição atualizada com sucesso!' })
+    res.status(200).json({ message: 'Expedição atualizada com sucesso!', status:201, exp:atualizada });
   } catch (err) {
-    console.error(err)
-    return res.status(500).json({ erro: 'Erro ao atualizar expedição' })
+    console.error(err);
+    return res.status(500).json({ erro: 'Erro ao atualizar expedição' });
   }
-})
+});
 
 // Excluir uma expedição
 router.delete('/:id', async (req, res) => {
@@ -99,7 +126,7 @@ router.delete('/:id', async (req, res) => {
       return res.status(404).json({ erro: 'Expedição não encontrada' })
     }
 
-    res.status(200).json({ mensagem: 'Expedição excluída com sucesso!' })
+    res.status(200).json({ message: 'Expedição excluída com sucesso!' })
   } catch (err) {
     console.error(err)
     return res.status(500).json({ erro: 'Erro ao excluir expedição' })

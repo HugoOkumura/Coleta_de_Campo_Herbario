@@ -11,7 +11,7 @@ import {
 
 export const router = express.Router()
 
-// Criar uma amostra
+//Criar uma amostra
 router.post('/', async (req, res) => {
     try {
         const { id_planta, id_expedicao, nm_coletor } = req.body;
@@ -37,39 +37,9 @@ router.post('/', async (req, res) => {
             message: error.message || 'Erro ao criar a amostra',
         });
     }
-
-    const novaAmostra = await criarAmostra({
-      id_planta,
-      id_expedicao,
-      id_relevo,
-      id_solo,
-      nm_coletor,
-      nr_altitude,
-      nr_longitude,
-      nr_latitude,
-      nr_altura,
-      nr_DAP,
-      nr_CAP,
-      ds_exsudado,
-      ds_obscomplement
-    });
-
-    return res.status(201).json({
-      success: true,
-      data: novaAmostra,
-      message: 'Amostra criada com sucesso'
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      error: error.message || 'Erro ao criar a amostra',
-      details: error.details || null
-    });
-  }
 });
 
-// Listar todas as amostras
+//Listar uma amostra
 router.get('/', async (req, res) => {
     try {
         // Busca todas as amostras
@@ -163,32 +133,10 @@ router.get('/:id', async (req, res) => {
             message: error.message || 'Erro ao obter amostra',
         });
     }
-
-    const amostra = await obterAmostra(id);
-    if (!amostra) {
-      return res.status(404).json({
-        success: false,
-        error: 'Amostra não encontrada',
-        details: null
-      });
-    }
-
-    return res.status(200).json({
-      success: true,
-      data: amostra,
-      message: 'Amostra obtida com sucesso'
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      error: error.message || 'Erro ao obter amostra',
-      details: error.details || null
-    });
-  }
 });
 
-// Atualizar uma amostra
+
+//Atualizar uma amostra
 router.put('/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id);
@@ -230,74 +178,23 @@ router.put('/:id', async (req, res) => {
             message: error.message || 'Erro ao atualizar amostra',
         });
     }
-
-    const {
-      id_planta,
-      id_expedicao,
-      id_relevo,
-      id_solo,
-      nm_coletor,
-      nr_altitude,
-      nr_longitude,
-      nr_latitude,
-      nr_altura,
-      nr_DAP,
-      nr_CAP,
-      ds_exsudado,
-      ds_obscomplement
-    } = req.body;
-
-    if (!id_planta || !id_expedicao || !nm_coletor) {
-      return res.status(400).json({
-        success: false,
-        error: 'Campos obrigatórios ausentes.',
-        details: null
-      });
-    }
-
-    const amostraAtualizada = await atualizarAmostra(id, {
-      id_planta,
-      id_expedicao,
-      id_relevo,
-      id_solo,
-      nm_coletor,
-      nr_altitude,
-      nr_longitude,
-      nr_latitude,
-      nr_altura,
-      nr_DAP,
-      nr_CAP,
-      ds_exsudado,
-      ds_obscomplement
-    });
-
-    return res.status(200).json({
-      success: true,
-      data: amostraAtualizada,
-      message: 'Amostra atualizada com sucesso!'
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      error: error.message || 'Erro ao atualizar amostra',
-      details: error.details || null
-    });
-  }
 });
 
-// Excluir uma amostra
+
+// Excluir uma Amostra
 router.delete('/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
+    // Validação do ID
     if (isNaN(id)) {
       return res.status(400).json({
         status: 500,
         message: 'ID inválido',
       });
     }
-
+    // Exclusão da amostra
     const excluida = await excluirAmostra(id);
+    // Verificação se a amostra foi encontrada e excluída
     if (!excluida) {
       return res.status(404).json({
         status: 500,
@@ -305,7 +202,7 @@ router.delete('/:id', async (req, res) => {
         
       });
     }
-
+    // Resposta de sucesso
     return res.status(200).json({
       status: 200,
       message: 'Amostra excluída com sucesso!',
@@ -313,6 +210,7 @@ router.delete('/:id', async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    // Resposta em caso de erro interno
     return res.status(500).json({
       status: 500,
       message: error.message || 'Erro ao excluir amostra',

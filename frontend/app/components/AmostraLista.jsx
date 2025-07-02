@@ -38,7 +38,7 @@ export default function AmostraLista({idExpedicao}){
             <div >
                 <h2>Lista de Amostras</h2>
                 <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                    <Link className="botao-adicionar" href={`DUMMY`}>
+                    <Link className="botao-adicionar" href={`./FormularioAmostra`}>
                         Adicionar Amostra
                     </Link>
                 </div>

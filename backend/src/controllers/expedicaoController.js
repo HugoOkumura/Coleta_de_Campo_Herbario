@@ -61,7 +61,7 @@ export const obterExpedicao = async (id) => {
 // Atualizar uma expedição
 export const atualizarExpedicao = async (id, dados) => {
   const idNum = Number(id)
-  const { dt_expedicao, id_municipio, id_vegetacao } = dados
+  const {ds_titulo, dt_expedicao, id_municipio, id_vegetacao } = dados
 
   const existe = await prisma.expedicao.findUnique({
     where: { id_expedicao: idNum },
@@ -71,6 +71,7 @@ export const atualizarExpedicao = async (id, dados) => {
   return await prisma.expedicao.update({
     where: { id_expedicao: idNum },
     data: {
+      ds_titulo: ds_titulo,
       dt_expedicao: new Date(dt_expedicao),
       id_municipio: Number(id_municipio),
       id_vegetacao: id_vegetacao ? Number(id_vegetacao) : null,

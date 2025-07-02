@@ -32,7 +32,7 @@ app.use('/api/plantas', plantaRoutes)
 app.use('/api/amostras', amostraRoutes)
 app.use('/api/estados', estadosRoutes)
 app.use('/api/municipios', municipiosRoutes)
-app.use('/api/vegetacao', vegetacaoRoutes);
+app.use('/api/vegetacoes', vegetacaoRoutes);
 
 
 

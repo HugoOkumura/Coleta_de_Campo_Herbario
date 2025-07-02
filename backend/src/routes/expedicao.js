@@ -62,55 +62,6 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// // Atualizar uma expedição
-// router.put('/:id', async (req, res) => {
-//   try {
-//     const id = parseInt(req.params.id)
-//     if (isNaN(id)) {
-//       return res.status(400).json({ erro: 'ID inválido' })
-//     }
-
-//     const { dt_expedicao, id_municipio } = req.body
-//     if (!dt_expedicao || !id_municipio) {
-//       return res.status(400).json({ erro: 'Campos obrigatórios ausentes.' })
-//     }
-
-//     const atualizada = await atualizarExpedicao(id, req.body)
-//     if (!atualizada) {
-//       return res.status(404).json({ erro: 'Expedição não encontrada' })
-//     }
-
-//     res.status(200).json({ message: 'Expedição atualizada com sucesso!', status:201, exp:atualizada })
-//   } catch (err) {
-//     console.error(err)
-//     return res.status(500).json({ erro: 'Erro ao atualizar expedição' })
-//   }
-// })
-
-// router.put('/fechar/:id', async (req,res) => {
-//   try{
-//     const id = parseInt(req.params.id)
-//     if (isNaN(id)){
-//       return res.status(400).json({message:'ID Inválido'})
-//     }
-
-//     const fechada = await fecharExpedicao(id)
-//     if (!fechada){
-//       return res.status(404).json({message:'Expedição não encontrada', status:404})
-//     }
-
-//     return res.status(201).json({
-//       message:'Expedição fechada com sucesso',
-//       data: fechada,
-//       status: 201
-//     })
-
-//   } catch(err) {
-//     console.error(err)
-//     return res.status(500).json({message: 'Erro ao fechar a expedição'})
-//   }
-// })
-
 router.put('/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);

@@ -5,9 +5,9 @@ import {
   obterTipoVegetacao,
   atualizarTipoVegetacao,
   excluirTipoVegetacao,
-} from '../controllers/tipoVegetacaoController.js';
+} from '../controllers/vegetacaoController.js';
 
-// export const router = express.Router();
+export const router = express.Router();
 const MAX_LENGTH_NM_VEGETACAO = 40;
 
 // Criar um tipo de vegetação
@@ -118,4 +118,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-export const tipoVegetacaoRoutes = router;
+export const vegetacaoRoutes = router;

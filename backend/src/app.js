@@ -11,6 +11,7 @@ import { estadosRoutes } from './routes/estado.js'
 import {municipiosRoutes} from './routes/municipio.js'
 import {vegetacaoRoutes} from './routes/vegetacao.js';
 
+
 const app = express()
 
 app.use(logger('dev'))
@@ -32,6 +33,7 @@ app.use('/api/amostras', amostraRoutes)
 app.use('/api/estados', estadosRoutes)
 app.use('/api/municipios', municipiosRoutes)
 app.use('/api/vegetacao', vegetacaoRoutes);
+
 
 
 export default app

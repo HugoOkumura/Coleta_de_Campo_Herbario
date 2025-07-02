@@ -1,3 +1,4 @@
+
 import express from 'express';
 import {
   criarTipoVegetacao,
@@ -10,85 +11,85 @@ import {
 export const router = express.Router();
 const MAX_LENGTH_NM_VEGETACAO = 40;
 
-// Criar um tipo de vegetação
-router.post('/', async (req, res) => {
-  try {
-    const { nm_vegetacao } = req.body;
-    if (!nm_vegetacao) {
-      return res.status(400).json({ erro: 'O campo nm_vegetacao é obrigatório.' });
-    }
-    if (nm_vegetacao.length > MAX_LENGTH_NM_VEGETACAO) {
-      return res.status(400).json({ erro: `O campo nm_vegetacao não pode exceder ${MAX_LENGTH_NM_VEGETACAO} caracteres.` });
-    }
+// // Criar um tipo de vegetação
+// router.post('/', async (req, res) => {
+//   try {
+//     const { nm_vegetacao } = req.body;
+//     if (!nm_vegetacao) {
+//       return res.status(400).json({ erro: 'O campo nm_vegetacao é obrigatório.' });
+//     }
+//     if (nm_vegetacao.length > MAX_LENGTH_NM_VEGETACAO) {
+//       return res.status(400).json({ erro: `O campo nm_vegetacao não pode exceder ${MAX_LENGTH_NM_VEGETACAO} caracteres.` });
+//     }
 
-    const novoTipoVegetacao = await criarTipoVegetacao(req.body);
-    res.status(201).json({ mensagem: 'Tipo de vegetação criado com sucesso!', tipoVegetacao: novoTipoVegetacao });
-  } catch (err) {
-    console.error(err);
+//     const novoTipoVegetacao = await criarTipoVegetacao(req.body);
+//     res.status(201).json({ mensagem: 'Tipo de vegetação criado com sucesso!', tipoVegetacao: novoTipoVegetacao });
+//   } catch (err) {
+//     console.error(err);
 
-    if (err.message.includes('exceder') || err.message.includes('obrigatório')) {
-        return res.status(400).json({ erro: err.message });
-    }
-    return res.status(500).json({ erro: `Erro ao criar tipo de vegetação: ${err.message}` });
-  }
-});
+//     if (err.message.includes('exceder') || err.message.includes('obrigatório')) {
+//         return res.status(400).json({ erro: err.message });
+//     }
+//     return res.status(500).json({ erro: `Erro ao criar tipo de vegetação: ${err.message}` });
+//   }
+// });
 
-// Listar todos os tipos de vegetação
-router.get('/', async (req, res) => {
-  try {
-    const tiposVegetacao = await listarTiposVegetacao();
-    res.status(200).json(tiposVegetacao);
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ erro: 'Erro ao listar tipos de vegetação.' });
-  }
-});
+// // Listar todos os tipos de vegetação
+// router.get('/', async (req, res) => {
+//   try {
+//     const tiposVegetacao = await listarTiposVegetacao();
+//     res.status(200).json(tiposVegetacao);
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ erro: 'Erro ao listar tipos de vegetação.' });
+//   }
+// });
 
-// Obter um tipo de vegetação por ID
-router.get('/:id', async (req, res) => {
-  try {
-    const id = parseInt(req.params.id, 10); // Adicionado radix 10
-    if (isNaN(id)) {
-      return res.status(400).json({ erro: 'ID inválido.' });
-    }
+// // Obter um tipo de vegetação por ID
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const id = parseInt(req.params.id, 10); // Adicionado radix 10
+//     if (isNaN(id)) {
+//       return res.status(400).json({ erro: 'ID inválido.' });
+//     }
 
-    const tipoVegetacao = await obterTipoVegetacao(id);
+//     const tipoVegetacao = await obterTipoVegetacao(id);
 
-    if (!tipoVegetacao) {
-      return res.status(404).json({ erro: 'Tipo de vegetação não encontrado.' });
-    }
+//     if (!tipoVegetacao) {
+//       return res.status(404).json({ erro: 'Tipo de vegetação não encontrado.' });
+//     }
 
-    res.status(200).json(tipoVegetacao);
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ erro: 'Erro ao obter tipo de vegetação.' });
-  }
-});
+//     res.status(200).json(tipoVegetacao);
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ erro: 'Erro ao obter tipo de vegetação.' });
+//   }
+// });
 
-// Atualizar um tipo de vegetação
-router.put('/:id', async (req, res) => {
-  try {
-    const id = parseInt(req.params.id, 10);
-    if (isNaN(id)) {
-      return res.status(400).json({ erro: 'ID inválido.' });
-    }
+// // Atualizar um tipo de vegetação
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const id = parseInt(req.params.id, 10);
+//     if (isNaN(id)) {
+//       return res.status(400).json({ erro: 'ID inválido.' });
+//     }
 
-    const { nm_vegetacao } = req.body;
-    if (!nm_vegetacao) {
-      return res.status(400).json({ erro: 'O campo nm_vegetacao é obrigatório para atualização.' });
-    }
-    if (nm_vegetacao.length > MAX_LENGTH_NM_VEGETACAO) {
-      return res.status(400).json({ erro: `O campo nm_vegetacao não pode exceder ${MAX_LENGTH_NM_VEGETACAO} caracteres.` });
-    }
+//     const { nm_vegetacao } = req.body;
+//     if (!nm_vegetacao) {
+//       return res.status(400).json({ erro: 'O campo nm_vegetacao é obrigatório para atualização.' });
+//     }
+//     if (nm_vegetacao.length > MAX_LENGTH_NM_VEGETACAO) {
+//       return res.status(400).json({ erro: `O campo nm_vegetacao não pode exceder ${MAX_LENGTH_NM_VEGETACAO} caracteres.` });
+//     }
 
-    const atualizado = await atualizarTipoVegetacao(id, req.body);
-    res.status(200).json({ mensagem: 'Tipo de vegetação atualizado com sucesso!', tipoVegetacao: atualizado });
-  } catch (err) {
-    console.error(err);
-    if (err.code === 'P2025') { // Erro do Prisma: "Record to update not found."
-        return res.status(404).json({ erro: 'Tipo de vegetação não encontrado para atualização.' });
-    }
-   
+//     const atualizado = await atualizarTipoVegetacao(id, req.body);
+//     res.status(200).json({ mensagem: 'Tipo de vegetação atualizado com sucesso!', tipoVegetacao: atualizado });
+//   } catch (err) {
+//     console.error(err);
+//     if (err.code === 'P2025') { // Erro do Prisma: "Record to update not found."
+//         return res.status(404).json({ erro: 'Tipo de vegetação não encontrado para atualização.' });
+//     }
+
     if (err.message.includes('exceder') || err.message.includes('obrigatório')) {
         return res.status(400).json({ erro: err.message });
     }

@@ -73,6 +73,17 @@ p{
   color: white;
 }
 
+.botao-fechar {
+  background-color: #f56565;
+  color: white;
+}
+
+.botao-reabrir {
+  background-color: #4299e1;
+  color: white;
+}
+
+
 .botao-editar:hover {
   background-color: #3182ce;
 }

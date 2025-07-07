@@ -55,7 +55,7 @@ export default function ExpedicoesPage() {
           key={expedicao.id_expedicao}
           expedicao={expedicao}
           onDetalhes={(id) => router.push(`/expedicao/${id}`)}
-          onRegistrar={(id) => router.push(`/expedicao/${id}/registrar`)}
+          onRegistrar={(id) => router.push(`/expedicao/${id}/amostra`)}
         />
       )}
       )}

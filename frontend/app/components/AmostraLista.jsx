@@ -1,24 +1,26 @@
 import React, {useEffect, useState} from "react"
 import './AmostraLista.css'
-// import "../expedicao/[id_expedicao]/page.css"
-
-import { useRouter } from "next/router"
+import { useRouter } from 'next/navigation';
 import { api } from "../lib/api"
 import Link from "next/link";
 import AmostraCard from "./AmostraCard";
 
-export default function AmostraLista({idExpedicao}){
-    // const router = useRouter();
+export default function AmostraLista({
+    expedicaoId,
+    expedicao_aberto
+    }
+){
+    const router = useRouter();
     const [amostras, setAmostras] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error,setError] = useState(null)
 
     useEffect( () => {
-
         const carregarAmostras = async () => {
             try{
-                const response = await api.get(`api/amostras/expedicao/${idExpedicao}`)
-                if(response.status !== 201) throw new Error(response.message);
+                const response = await api.get(`api/amostras/expedicao/${expedicaoId}`)
+                console.log(response.data)
+                if(response.status !== 200) throw new Error(response.message);
                 setAmostras(response.data);
             } catch(err){
                 setError(err.message)
@@ -30,6 +32,10 @@ export default function AmostraLista({idExpedicao}){
         carregarAmostras();
     }, []);
 
+    const handleAdicionarClick = () => {
+        router.push(`/expedicao/${expedicaoId}/amostra`);
+    }
+
     if(loading) return <div>Carregando Amostras</div>
 
     return(
@@ -37,11 +43,18 @@ export default function AmostraLista({idExpedicao}){
 
             <div >
                 <h2>Lista de Amostras</h2>
+
+                { expedicao_aberto &&(
                 <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                    <Link className="botao-adicionar" href={`./FormularioAmostra`}>
-                        Adicionar Amostra
-                    </Link>
+                        <button
+                            className="botao-adicionar"
+                            onClick={handleAdicionarClick}
+                        >
+                            Adicionar Amostra
+                        </button>
                 </div>
+                    )}
+
             </div>
 
             <div>

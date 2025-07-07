@@ -44,11 +44,12 @@ export default function AmostraForm() {
           api.get('api/solos'),
         ]);
 
-        setExpedicoes(exp.data);
-        setPlantas(plt.data);
-        setRelevos(rel.data);
-        setSolos(sol.data);
+        setExpedicoes(exp);
+        setPlantas(plt);
+        setRelevos(rel);
+        setSolos(sol);
       } catch (err) {
+        console.error('Erro ao carregar dados do formulário:', err);
         setError('Erro ao carregar dados do formulário');
       } finally {
         setLoading({
@@ -73,7 +74,7 @@ export default function AmostraForm() {
     setError(null);
 
     try {
-      const response = await fetch('localhost:5000/api/amostras', {
+      const response = await fetch('http://localhost:5000/api/amostras', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -114,6 +115,7 @@ export default function AmostraForm() {
             label: 'Planta',
             options: plantas,
             labelField: 'nm_cientifico',
+            idField: 'id_planta',
             loadingKey: 'plantas'
           },
           {
@@ -121,6 +123,7 @@ export default function AmostraForm() {
             label: 'Expedição',
             options: expedicoes,
             labelField: 'ds_titulo',
+            idField: 'id_expedicao',
             loadingKey: 'expedicoes'
           },
           {
@@ -128,6 +131,7 @@ export default function AmostraForm() {
             label: 'Relevo',
             options: relevos,
             labelField: 'nome',
+            idField: 'id_relevo',
             loadingKey: 'relevos'
           },
           {
@@ -135,9 +139,10 @@ export default function AmostraForm() {
             label: 'Solo',
             options: solos,
             labelField: 'nome',
+            idField: 'id_solo',
             loadingKey: 'solos'
           }
-        ].map(({ name, label, options, labelField, loadingKey }) => (
+        ].map(({ name, label, options, labelField, idField, loadingKey }) => (
           <div className="form-group" key={name}>
             <label htmlFor={name}>{label}</label>
             <select
@@ -151,8 +156,8 @@ export default function AmostraForm() {
               <option value="">Selecione {label.toLowerCase()}</option>
               {options.map(item => (
                 <option
-                  key={item[`id_${name.split('_')[1]}`]}
-                  value={item[`id_${name.split('_')[1]}`]}
+                  key={item[idField]}
+                  value={item[idField]}
                 >
                   {item[labelField]}
                 </option>

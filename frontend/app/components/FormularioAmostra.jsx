@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import './FormularioExpedicao.css';
 import { api } from '../lib/api';
+import { useRouter } from 'next/navigation';
+
 
 export default function AmostraForm() {
   const [formData, setFormData] = useState({
@@ -19,7 +21,8 @@ export default function AmostraForm() {
     ds_exsudado: '',
     ds_obscomplement: ''
   });
-
+  
+  const router = useRouter();
   const [plantas, setPlantas] = useState([]);
   const [expedicoes, setExpedicoes] = useState([]);
   const [relevos, setRelevos] = useState([]);
@@ -32,6 +35,8 @@ export default function AmostraForm() {
     solos: true
   });
 
+  let idExpedicao
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -43,11 +48,12 @@ export default function AmostraForm() {
           api.get('api/relevos'),
           api.get('api/solos'),
         ]);
-
         setExpedicoes(exp);
         setPlantas(plt);
         setRelevos(rel);
         setSolos(sol);
+        idExpedicao = exp.id_expedicao
+        
       } catch (err) {
         console.error('Erro ao carregar dados do formulário:', err);
         setError('Erro ao carregar dados do formulário');
@@ -80,7 +86,7 @@ export default function AmostraForm() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) throw new Error('Erro ao cadastrar amostra');
+      if (response.status != 201) throw new Error('Erro ao cadastrar amostra');
 
       alert('Amostra cadastrada com sucesso!');
       setFormData({
@@ -98,6 +104,9 @@ export default function AmostraForm() {
         ds_exsudado: '',
         ds_obscomplement: ''
       });
+
+      router.push(`/expedicao/${response.novaAmostra?.id_expedicao}`)
+
     } catch (err) {
       setError(err.message);
     }
@@ -130,7 +139,7 @@ export default function AmostraForm() {
             name: 'id_relevo',
             label: 'Relevo',
             options: relevos,
-            labelField: 'nome',
+            labelField: 'nm_relevo',
             idField: 'id_relevo',
             loadingKey: 'relevos'
           },
@@ -138,7 +147,7 @@ export default function AmostraForm() {
             name: 'id_solo',
             label: 'Solo',
             options: solos,
-            labelField: 'nome',
+            labelField: 'nm_solo',
             idField: 'id_solo',
             loadingKey: 'solos'
           }

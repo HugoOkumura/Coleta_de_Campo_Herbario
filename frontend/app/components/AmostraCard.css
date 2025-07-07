@@ -1,32 +1,47 @@
-/* Cards de amostras */
+/* Estilo principal do card */
 .amostra-card {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  background-color: #48bb78;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s ease;
+  max-width: 700px;
+  width: 100%;
 }
 
+.amostra-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Container interno com conteúdo alinhado */
 .amostra-card-content {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
+/* Informações da amostra (lado esquerdo) */
 .amostra-info {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex: 1;
 }
 
+/* Checkbox opcional */
 .amostra-checkbox {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
 }
 
+/* Nomes da planta */
 .amostra-nomes h3 {
-  font-weight: 500;
-  color: #4299e1;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2b6cb0;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -35,19 +50,31 @@
 }
 
 .amostra-nomes p {
-  font-size: 0.875rem;
-  color: #718096;
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: BLACK;
 }
 
+/* Informações adicionais (lado direito) */
 .amostra-detalhes {
   text-align: right;
+  min-width: 140px;
+  color: black;
+  font-weight: 500;
+}
+
+.amostra-detalhes p {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  color: black;
 }
 
 .amostra-detalhes p:first-child {
-  font-size: 0.875rem;
+  
+  color: black;
 }
 
 .amostra-detalhes p:last-child {
-  font-size: 0.75rem;
-  color: #718096;
+  font-weight: 500;
+  color: black;
 }

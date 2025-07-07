@@ -1,5 +1,5 @@
 // /app/expedicao/amostra/page.jsx
-import FormularioAmostra from '../../components/FormularioAmostra';
+import FormularioAmostra from '../../../components/FormularioAmostra';
 
 export default function AmostraPage() {
   return (

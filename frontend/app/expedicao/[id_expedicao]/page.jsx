@@ -131,7 +131,7 @@ export default function ExpedicaoDetalhes({ params }) {
         </div>
       </div>
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <AmostraLista expedicaoId={id_expedicao} />
+          <AmostraLista expedicaoId={id_expedicao} expedicao_aberto={expedicao.in_aberto} />
         </div>
     </div>
   );
